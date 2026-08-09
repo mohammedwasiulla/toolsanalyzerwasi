@@ -1,0 +1,27 @@
+# Core (required)
+streamlit>=1.38
+pandas>=2.0
+
+# Page fetching / parsing (required for "live" mode; "local" demo mode
+# degrades gracefully to a regex fallback if these are missing, see
+# src/extraction_utils.py)
+requests>=2.31
+beautifulsoup4>=4.12
+trafilatura>=1.8      # optional but recommended - much cleaner text extraction than bs4 alone
+
+# --- Optional / cost-conscious extras -------------------------------------
+# Only needed if you flip on retrieval or the OpenAI-assisted summarizer.
+# The prototype is fully functional (rule-based tagging + extractive
+# summaries) without any of these and without any API key.
+#
+# sentence-transformers>=2.2   # local embeddings, if you add retrieval
+# faiss-cpu>=1.7               # or: chromadb>=0.4              # lightweight vector store
+#
+# LLM_BACKEND=openai in your environment uses `requests` (already listed)
+# to call the OpenAI API directly - no extra SDK required.
+# LLM_BACKEND=ollama talks to a local Ollama server (http://localhost:11434)
+# - install Ollama separately (https://ollama.com), no extra pip package needed.
+
+# --- Dev / demo tooling (optional) -----------------------------------------
+# playwright>=1.40   # only needed to regenerate screenshots/*.png yourself
+pytest>=7.4
